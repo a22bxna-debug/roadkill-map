@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Streamlit in gis_env (via conda run)",
+      "type": "shell",
+      "command": "conda",
+      "args": ["run", "-n", "gis_env", "streamlit", "run", "${relativeFile}"]
+    }
+  ]
+}
