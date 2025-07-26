@@ -11,6 +11,25 @@ import io
 import base64
 from geopy.geocoders import Nominatim
 
+# --- パスワード認証 ---
+def check_password():
+    if "password_correct" not in st.session_state:
+        st.session_state.password_correct = False
+
+    if not st.session_state.password_correct:
+        password = st.text_input("パスワードを入力してください", type="password")
+        if st.button("ログイン"):
+            if password == st.secrets["password"]:
+                st.session_state.password_correct = True
+                st.rerun()
+            else:
+                st.error("パスワードが違います。")
+        return False
+    return True
+
+if not check_password():
+    st.stop()
+
 # --- アプリケーションの基本設定 ---
 st.set_page_config(layout="wide", page_title="R5年度ロードキルマップ")
 
